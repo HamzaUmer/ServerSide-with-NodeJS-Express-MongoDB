@@ -12,12 +12,12 @@ var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 var uploadRouter = require('./routes/uploadRouter');
+var favouriteRouter = require('./routes/favouriteRouter');
 var config = require('./config');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-const Dishes = require('./models/dishes');
 
 var passport = require('passport');
 var authenticate = require('./authenticated');
@@ -91,6 +91,7 @@ app.use('/dishes',dishRouter);
 app.use('/promotions',promoRouter);
 app.use('/leaders',leaderRouter);
 app.use('/imageUpload',uploadRouter);
+app.use('/favourites',favouriteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

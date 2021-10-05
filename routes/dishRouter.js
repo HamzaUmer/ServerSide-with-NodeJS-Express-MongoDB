@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('./cors');
 
 const Dishes = require('../models/dishes');
-var authenticate = require('../authenticated');
+const authenticate = require('../authenticated');
 
 const dishRouter = express.Router();
 
@@ -216,7 +216,7 @@ dishRouter.route('/:dishId/comments/:commentId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.delete(authenticate.verifyUser, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .then((dish) => {
         if (dish != null && dish.comments.id(req.params.commentId) != null
